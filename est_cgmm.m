@@ -57,11 +57,11 @@ for iter=1:10
         tmp_Ry_f = 1/sum(lambda_y(:, f)) * sum_y;
         tmp_Rv_f = 1/sum(lambda_v(:, f)) * sum_v;
         
-        [V1, D1] = eig(squeeze(tmp_Ry_f));
-        [V2, D2] = eig(squeeze(tmp_Rv_f));
+        [~, D1] = eig(squeeze(tmp_Ry_f));
+        [~, D2] = eig(squeeze(tmp_Rv_f));
 
-        entropy1 = -diag(V1, 0)'/sum(diag(V1, 0)) * log(diag(V1, 0)/sum(diag(V1, 0)));
-        entropy2 = -diag(V2, 0)'/sum(diag(V2, 0)) * log(diag(V2, 0)/sum(diag(V2, 0)));
+        entropy1 = -diag(D1)'/sum(diag(D1)) * log(diag(D1)/sum(diag(D1)));
+        entropy2 = -diag(D2)'/sum(diag(D2)) * log(diag(D2)/sum(diag(D2)));
         if entropy1 > entropy2
             Ry(:, :, f) = tmp_Rv_f;
             Rv(:, :, f) = tmp_Ry_f;
